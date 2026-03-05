@@ -114,15 +114,15 @@ pr_cfg = struct();
 pr_cfg.srate = fs;                       % Sampling rate
 pr_cfg.physicalAxis_vec = timeVec;       % Time axis for output
 pr_cfg.physicalAxis_units = 's';         % Time units
-pr_cfg.STFFT_windowLength_pnt = 2000;    % Window length (e.g., 500 points = 250 ms at 2000 Hz)
-pr_cfg.STFFT_windowStep_pnt = 100;       % Window step (100 points = 50 ms at 2000 Hz)
-pr_cfg.STFFT_zeroPadding = 8;            % 8x zero padding for frequency resolution
+pr_cfg.STFT_windowLength_pnt = 2000;    % Window length (e.g., 500 points = 250 ms at 2000 Hz)
+pr_cfg.STFT_windowStep_pnt = 100;       % Window step (100 points = 50 ms at 2000 Hz)
+pr_cfg.STFT_zeroPadding = 8;            % 8x zero padding for frequency resolution
 
 
 pr_cfg.sanityCheck_fig = false;
 
 % run STFFT
-[spectra, pr_cfg] = pr_STFFT(X1, pr_cfg);
+[spectra, pr_cfg] = pr_STFT(X1, pr_cfg);
 
 % extract amplitude from complex spectra
 complex_spectra = complex(spectra(:,:,1), spectra(:,:,2));
@@ -131,7 +131,7 @@ amplitude = amplitude * 2;
 power = amplitude.^2;
 
 % get time-frequency axes from output
-freq_axis = pr_cfg.STFFT_freq_Hz;
+freq_axis = pr_cfg.STFT_freq_Hz;
 time_axis_stfft = pr_cfg.physicalAxis_output;
 
 %% Visualize STFFT results
