@@ -132,9 +132,9 @@ power = amplitude.^2;
 
 % get time-frequency axes from output
 freq_axis = pr_cfg.STFT_freq_Hz;
-time_axis_stfft = pr_cfg.physicalAxis_output;
+time_axis = pr_cfg.physicalAxis_output;
 
-%% Visualize STFFT results
+%% Visualize STFT results
 
 % TO DO: convert this to its own function (e.g., pr_view)
 
@@ -143,7 +143,7 @@ figure(2); clf
 set(gcf, 'Position', [150 50 1200 600]);
 
 % Time-frequency spectrogram (raw amplitude in original units)
-imagesc(time_axis_stfft, freq_axis, amplitude);
+imagesc(time_axis, freq_axis, amplitude);
 axis xy; 
 colorbar;
 xlabel('Time (s)', 'FontSize', 12);
